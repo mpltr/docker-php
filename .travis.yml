@@ -1,0 +1,12 @@
+sudo: required
+language: generic
+
+services:
+  - docker
+
+after_success:
+  - docker build -t mpltr/php-apache-composer-node .
+  # log in to the docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # push image to dockerhub
+  - docker push mpltr/php-apache-composer-node
