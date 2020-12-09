@@ -5,8 +5,8 @@ services:
   - docker
 
 after_success:
-  - docker build -t mpltr/php-apache-composer-node ./Dockerfile.phpbase
-  - docker built -t mpltr/php-apache-composer-node:laravel ./Dockerfile.laravel
+  - docker build -t mpltr/php-apache-composer-node -f Dockerfile.phpbase .
+  - docker built -t mpltr/php-apache-composer-node:laravel -f Dockerfile.laravel .
   # log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # push image to dockerhub
