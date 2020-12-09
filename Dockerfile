@@ -6,33 +6,27 @@ RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
 
 # Install  dependencies
 RUN apt-get update \
- && apt-get install -y \
- curl \
- apt-transport-https \
- git \
- build-essential \
- libssl-dev \
- wget \
- unzip \
- bzip2 \
- libbz2-dev \
- zlib1g-dev \
- libfontconfig \
- libfreetype6-dev \
- libjpeg62-turbo-dev \
- libpng-dev \
- libicu-dev \
- libxml2-dev \
- libldap2-dev \
- libmcrypt-dev \
- python-pip \
- fabric \
- jq \
- gnupg \
- && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+    && apt-get install -y \
+    nodejs \
+    npm \
+    git \
+    zip \
+    curl \
+    sudo \
+    unzip \
+    libicu-dev \
+    libbz2-dev \
+    libpng-dev \
+    libjpeg-dev \
+    libmcrypt-dev \
+    libreadline-dev \
+    libfreetype6-dev \
+    g++ 
 
-# Install composer
-RUN curl -sS https://getcomposer.org/installer | php -- --version=2.0.8 && mv composer.phar /usr/local/bin/composer 
+# Install composer via docker image
+COPY --from=composer:2.0.7 /usr/bin/composer /usr/bin/composer
+# Install composer via curl
+# RUN curl -sS https://getcomposer.org/installer | php -- --version=2.0.8 && mv composer.phar /usr/local/bin/composer 
 
 
 
