@@ -23,6 +23,7 @@ RUN apt-get update \
     libreadline-dev \
     libfreetype6-dev \
     libpq-dev \
+    libzip-dev \
     g++ 
 
 RUN docker-php-ext-install \
