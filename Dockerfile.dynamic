@@ -34,7 +34,6 @@ RUN apt-get update \
     bcmath \
     opcache \
     calendar \
-    mbstring \
     pdo_mysql \
     pdo_pgsql \
     zip
