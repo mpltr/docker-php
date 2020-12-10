@@ -4,11 +4,11 @@ language: generic
 services:
   - docker
 
-env:
-  - NAMESPACE=mpltr
-  - IMAGE_NAME=php-apache-laravel
-  - TAG="$PHP_VERSION"|"$NODE_VERSION"
-  - IMAGE="$NAMESPACE"/"$IMAGE_NAME":"$PHP_VERSION"|"$NODE_VERSION"
+# env:
+#   - NAMESPACE=mpltr
+#   - IMAGE_NAME=php-apache-laravel
+#   - TAG="$PHP_VERSION"|"$NODE_VERSION"
+#   - IMAGE="$NAMESPACE"/"$IMAGE_NAME":"$PHP_VERSION"|"$NODE_VERSION"
 
 stages:
   - build
