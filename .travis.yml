@@ -5,11 +5,11 @@ services:
   - docker
 
 after_success:
-  - docker build -t mpltr/php-laravel:$PHP_VERSION-$NODE_VERSION -f Dockerfile.dynamic --build-arg PHP_VERSION="$PHP_VERSION" .
+  - docker build -t mpltr/php-laravel:"$PHP_VERSION"-"$NODE_VERSION" -f Dockerfile.dynamic --build-arg PHP_VERSION="$PHP_VERSION" .
   # - docker build -t mpltr/php-apache-composer-node -f Dockerfile.phpbase .
   # - docker build -t mpltr/php-apache-composer-node:laravel -f Dockerfile.laravel .
   # log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # push image to dockerhub
   # - docker push mpltr/php-apache-composer-node
-  - docker push mpltr/php-laravel:$PHP_VERSION-$NODE_VERSION
+  - docker push mpltr/php-laravel:"$PHP_VERSION"-"$NODE_VERSION"
