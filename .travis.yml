@@ -7,8 +7,14 @@ services:
 env:
   - NAMESPACE=mpltr
   - IMAGE_NAME=php-apache-laravel
-  - TAG="$PHP_VERSION"|"$NODE_VERSION"
-  - IMAGE="$NAMESPACE"/"$IMAGE_NAME":"$PHP_VERSION"|"$NODE_VERSION"
+  - TAG=$PHP_VERSION|$NODE_VERSION
+  - IMAGE=$NAMESPACE/$IMAGE_NAME:$PHP_VERSION|$NODE_VERSION
+
+before_script:
+  - echo $NAMESPACE
+  - echo $IMAGE_NAME
+  - echo $TAG
+  - echo $IMAGE
 
 script:
   - docker build -t "$IMAGE" -f Dockerfile.dynamic --build-arg PHP_VERSION="$PHP_VERSION" --build-arg NODE_VERSION="$NODE_VERSION" .
