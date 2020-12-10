@@ -5,7 +5,7 @@ services:
   - docker
 
 script:
-  - docker build -t mpltr/php-apache-laravel:"$PHP_VERSION"|"NODE_VERSION" -f Dockerfile.dynamic --build-arg PHP_VERSION="$PHP_VERSION" --build-arg NODE_VERSION="$NODE_VERSION" .
+  - docker build -t mpltr/php-apache-laravel:"$PHP_VERSION"|"NODE_VERSION" --build-arg PHP_VERSION="$PHP_VERSION" --build-arg NODE_VERSION="$NODE_VERSION" .
 
 deploy:
   # log in to the docker CLI
