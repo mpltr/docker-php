@@ -1,6 +1,4 @@
 ARG PHP_VERSION=7.4
-ARG NODE_VERSION=14.15.1
-
 FROM php:${PHP_VERSION}-apache
 MAINTAINER Matthew Poulter <https://github.com/mpltr>
 
@@ -50,6 +48,11 @@ RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-av
 RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
 # mod_rewrite for .htaccess and headers
 RUN a2enmod rewrite headers
+
+# Installl Node
+ARG NODE_VERSION=14.x
+RUN curl -sL https://deb.nodesource.com/setup_$NODE_VERSION | bash
+RUN apt-get install --yes nodejs
 
 
 
