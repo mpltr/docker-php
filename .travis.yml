@@ -4,12 +4,14 @@ language: generic
 services:
   - docker
 
+env:
+  - NAMESPACE=mpltr
+  - IMAGE_NAME=php-apache-laravel
+  - TAG="$PHP_VERSION"|"$NODE_VERSION"
+
 after_success:
-  - docker build -t mpltr/php-laravel:"$PHP_VERSION"-"$NODE_VERSION" -f Dockerfile.dynamic --build-arg PHP_VERSION="$PHP_VERSION" .
-  # - docker build -t mpltr/php-apache-composer-node -f Dockerfile.phpbase .
-  # - docker build -t mpltr/php-apache-composer-node:laravel -f Dockerfile.laravel .
+  - docker build -t "$NAMESPACE"/"$IMAGE_NAME":"$PHP_VERSION"|"$NODE_VERSION" -f Dockerfile.dynamic --build-arg PHP_VERSION="$PHP_VERSION" --build-arg NODE_VERSION="$NODE_VERSION" .
   # log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # push image to dockerhub
-  # - docker push mpltr/php-apache-composer-node
-  - docker push mpltr/php-laravel:"$PHP_VERSION"-"$NODE_VERSION"
+  - docker push "$NAMESPACE"/"$IMAGE_NAME":"$PHP_VERSION"|"$NODE_VERSION"

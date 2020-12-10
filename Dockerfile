@@ -1,7 +1,7 @@
-ARG PHP_VERSION=7.0
-ARG NODE_VERSION=12.18.0
+ARG PHP_VERSION=7.4
+ARG NODE_VERSION=14.15.1
 
-FROM php:7.2-apache
+FROM php:${PHP_VERSION}-apache
 MAINTAINER Matthew Poulter <https://github.com/mpltr>
 
 # Use provided php.ini
