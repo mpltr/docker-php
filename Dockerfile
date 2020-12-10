@@ -1,15 +1,16 @@
+ARG PHP_VERSION=7.0
+ARG NODE_VERSION=12.18.0
+
 FROM php:7.2-apache
 MAINTAINER Matthew Poulter <https://github.com/mpltr>
 
 # Use provided php.ini
-RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
+RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 COPY ./php.ini "$PHP_INI_DIR/conf.d/php.ini"
 
-# # Install  dependencies
+# Install dependencies
 RUN apt-get update \
     && apt-get install -y \
-    nodejs \
-    npm \
     git \
     zip \
     curl \
@@ -24,9 +25,9 @@ RUN apt-get update \
     libfreetype6-dev \
     libpq-dev \
     libzip-dev \
-    g++ 
+    g++ \
 
-RUN docker-php-ext-install \
+    && docker-php-ext-install \
     bz2 \
     intl \
     iconv \
@@ -38,7 +39,7 @@ RUN docker-php-ext-install \
     zip
 
 # Install composer via docker image
-COPY --from=composer:2.0.7 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 # Install composer via curl
 # RUN curl -sS https://getcomposer.org/installer | php -- --version=2.0.8 && mv composer.phar /usr/local/bin/composer 
 
