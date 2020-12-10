@@ -6,7 +6,8 @@ MAINTAINER Matthew Poulter <https://github.com/mpltr>
 
 # Use provided php.ini
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
-COPY ./php.ini "$PHP_INI_DIR/conf.d/php.ini"
+# can create cusom php.ini if required
+# COPY ./php.ini "$PHP_INI_DIR/conf.d/php.ini"
 
 # Install dependencies
 RUN apt-get update \
